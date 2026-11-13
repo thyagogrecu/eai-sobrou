@@ -1,6 +1,6 @@
 /* E aí, sobrou? — funciona sem internet.
    Ao publicar uma versão nova, aumente o número abaixo para os aparelhos baixarem a atualização. */
-const VERSAO = 'eai-sobrou-d8979c0e';
+const VERSAO = 'eai-sobrou-e5b08fff';
 const ARQUIVOS = ['./', 'index.html', 'manifest.webmanifest', 'lib/chart.umd.js', 'lib/xlsx.full.min.js',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png', 'icons/apple-touch-icon.png'];
 
