@@ -1,6 +1,6 @@
 /* E aí, sobrou? — funciona sem internet.
    Ao publicar uma versão nova, aumente o número abaixo para os aparelhos baixarem a atualização. */
-const VERSAO = 'eai-sobrou-f604418b';
+const VERSAO = 'eai-sobrou-b9d67cb6';
 const ARQUIVOS = ['./', 'index.html', 'manifest.webmanifest', 'lib/chart.umd.js', 'lib/xlsx.full.min.js',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png', 'icons/apple-touch-icon.png'];
 
@@ -15,8 +15,8 @@ self.addEventListener('fetch', e => {
   const req = e.request, url = new URL(req.url);
   if (req.method !== 'GET') return;
   if (/script\.google(usercontent)?\.com$/.test(url.hostname)) return;   // Google Sheets: sempre direto
-  if (req.mode === 'navigate') {                                           // página: tenta a versão nova, senão usa a salva
-    e.respondWith(fetch(req).then(r => { const c = r.clone(); caches.open(VERSAO).then(x => x.put('index.html', c)); return r; })
+  if (req.mode === 'navigate') {                                           // página: sempre a versão mais nova da internet; sem internet, usa a salva
+    e.respondWith(fetch(req, { cache: 'no-store' }).then(r => { const c = r.clone(); caches.open(VERSAO).then(x => x.put('index.html', c)); return r; })
       .catch(() => caches.match('index.html')));
     return;
   }
